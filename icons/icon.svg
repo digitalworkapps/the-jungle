@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <rect width="512" height="512" fill="#0e1a12"/>
+  <path d="M0 512 C120 380 60 250 190 160 C150 260 230 330 170 512Z" fill="#1f5c33" opacity=".9"/>
+  <path d="M512 512 C400 400 470 270 350 180 C380 280 300 350 360 512Z" fill="#1f5c33" opacity=".9"/>
+  <rect x="96" y="96" width="320" height="320" rx="36" fill="#f5c518"/>
+  <text x="256" y="250" text-anchor="middle" font-family="Anton, Impact, 'Arial Black', sans-serif" font-weight="900" font-size="120" fill="#111">TJT</text>
+  <text x="256" y="370" text-anchor="middle" font-family="Anton, Impact, 'Arial Black', sans-serif" font-weight="900" font-size="120" fill="#111">26</text>
+</svg>
