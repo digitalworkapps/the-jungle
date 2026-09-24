@@ -1,5 +1,5 @@
 /* The Jungle Throwdown 26 — service worker */
-const CACHE = "jungle26-v1";
+const CACHE = "jungle26-v2";
 const ASSETS = [
   "./",
   "./index.html",

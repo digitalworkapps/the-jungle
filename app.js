@@ -138,6 +138,30 @@ document.addEventListener("click", e => {
   b.parentElement.innerHTML = `<iframe src="https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0" title="Mini-briefing" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>`;
 });
 
+/* ================= Jungle Joker ================= */
+function renderJoker(w) {
+  const v = calc.joker || 80;
+  return `
+    <details class="panel brief joker">
+      <summary>🃏 Jungle Joker <small>+50 %</small></summary>
+      <ul style="margin-top:12px">${JOKER.rules.map(r => `<li>${r}</li>`).join("")}<li class="only">WOD ${w.num}: ${w.joker}</li></ul>
+      <div class="tool">
+        <label class="field">Puntos de clasificación en este WOD<input type="number" inputmode="numeric" min="0" data-joker value="${v}"></label>
+        <div class="result" data-joker-out></div>
+      </div>
+    </details>`;
+}
+function jokerOut(root) {
+  const pts = numVal($("[data-joker]", root));
+  calc.joker = pts;
+  $("[data-joker-out]", root).innerHTML = `
+    <div class="big">${fmt(pts * (1 + JOKER.bonus))}<small>puntos con Joker</small></div>
+    <div class="row"><span>${fmt(pts)} + 50 %</span><b>+${fmt(pts * JOKER.bonus)}</b></div>`;
+}
+document.addEventListener("input", e => {
+  if (e.target.matches("[data-joker]")) { jokerOut(e.target.closest(".joker")); saveCalc(); }
+});
+
 /* ================= Editor de equipo (compartido) ================= */
 function teamEditor() {
   return `
@@ -469,6 +493,7 @@ function renderWod() {
         </div>
         <div class="stack">
           ${renderBriefing(w)}
+          ${renderJoker(w)}
           ${tool ? `<details class="panel" open><summary>${tool.title} <small>${catById(state.cat).label}</small></summary><div class="tool" id="tool"></div></details>` : ""}
         </div>
       </div>
@@ -477,6 +502,7 @@ function renderWod() {
         <button class="btn" data-go="1" ${state.wod === WODS.length - 1 ? "hidden" : ""}>WOD ${state.wod + 2} →</button>
       </nav>
     </div>`;
+  jokerOut($(".joker"));
   mountTool(w);
 }
 

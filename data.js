@@ -65,6 +65,16 @@ const AJOLOTE_GEAR = {
   master: { barra: "50/35", kb: "2×24/16", db: "2×22,5/15" }
 };
 
+/* Jungle Joker (audio de la organización) */
+const JOKER = {
+  bonus: 0.5,
+  rules: [
+    "Se puede usar en <b>uno de los WODs 1 a 5</b>; en la final no.",
+    "Se entrega <b>al juez antes de empezar</b> el WOD.",
+    "Suma un <b>50 % más</b> a los puntos de clasificación que saquéis en ese WOD. Ejemplo: si quedáis décimos y os dan 80 puntos, con el Joker son 80 + 40 = <b>120</b>."
+  ]
+};
+
 /* WOD 5: esquema de reps */
 const BUEY_SCHEME = [4, 6, 8, 10, 8, 6, 4];
 
@@ -102,8 +112,8 @@ const WODS = [
         "<b>+2 kg por cada repetición</b> de worm y de burpee. Ejemplo: 4 rondas + 2 worm = 58 reps × 2 = <b>116 kg</b> extra.",
         "Desempate: más repeticiones totales de worm + burpees."
       ]},
-      { h: "Jungle Joker", items: ["Se puede usar en este WOD. Sus reglas se explican en el briefing del viernes."] }
     ],
+    joker: "Se puede usar en este WOD.",
     tool: "caiman"
   },
 
@@ -154,8 +164,8 @@ const WODS = [
         "Con el elemento en <b>front rack</b>: reverse lunge con una pierna y extender, reverse lunge con la otra y extender, y un <b>thruster</b>. Eso es <b>1 repetición</b>.",
         "Sincro: rodilla en el suelo en cada lunge y brazos extendidos arriba en el thruster."
       ]},
-      { h: "Jungle Joker", items: ["Se puede usar en este WOD."] }
     ],
+    joker: "Se puede usar en este WOD.",
     tool: "ajolote"
   },
 
@@ -219,8 +229,8 @@ const WODS = [
         "Quien no complete sus reps cuenta <b>0</b> (a los demás sí se les cuenta).",
         "Ejemplo: 100 kg × 7 = 700, 100 kg × 5 = 500, chica 100 kg × 3 × 1,4 = 420 → <b>1.620 kg</b>."
       ]},
-      { h: "Jungle Joker", items: ["Solo vale para la <b>parte A</b> (rope climb), no para los clean & jerk."] }
     ],
+    joker: "Solo vale para la <b>parte A</b> (rope climb), no para los clean & jerk de la parte B.",
     tool: "sanguijuela"
   },
 
@@ -266,8 +276,8 @@ const WODS = [
         "Podéis cambiar de movimiento y de pareja cuando queráis, pero <b>solo con los movimientos de esa ronda</b>.",
         "El objetivo es sumar el máximo de puntos."
       ]},
-      { h: "Jungle Joker", items: ["Se puede usar en este WOD."] }
     ],
+    joker: "Se puede usar en este WOD.",
     tool: "tarantula"
   },
 
@@ -324,8 +334,8 @@ const WODS = [
         "Si no acabáis: <b>repeticiones totales hechas unbroken</b> de los 4 ejercicios, incluidas las de la serie a medias si no se ha fallado.",
         "<b>No cuentan</b> la comba ni los thrusters del buy-in."
       ]},
-      { h: "Jungle Joker", items: ["Es el último WOD: si no la habéis usado, <b>tiradla aquí</b>."] }
     ],
+    joker: "Es el último WOD antes de la final: si no la habéis usado, <b>tiradla aquí</b>.",
     tool: "buey"
   }
 ];
