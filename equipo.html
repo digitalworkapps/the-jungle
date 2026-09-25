@@ -31,7 +31,7 @@
   .p::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--c)}
   .u{--c:var(--unai)} .y{--c:var(--yerai)} .a{--c:var(--ainara)}
   nav{position:sticky;top:0;z-index:20;background:linear-gradient(var(--bg) 80%,transparent);padding:10px 16px 14px}
-  nav .tabs{max-width:900px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:6px;background:var(--bg-deep);padding:5px;border-radius:999px;border:1px solid var(--line)}
+  nav .tabs{max-width:900px;margin:0 auto;display:grid;grid-template-columns:repeat(2,1fr);gap:6px;background:var(--bg-deep);padding:5px;border-radius:999px;border:1px solid var(--line)}
   nav a{text-decoration:none;text-align:center;font-weight:800;font-size:.8rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-dim);padding:10px 4px;border-radius:999px;min-height:42px;display:flex;align-items:center;justify-content:center}
   nav a.on{background:var(--gold);color:#111}
   main{max-width:900px;margin:0 auto;padding:0 16px}
@@ -85,17 +85,6 @@
   .joker{background:linear-gradient(135deg,rgba(245,197,24,.18),rgba(61,220,132,.08));border:2px solid var(--gold);border-radius:var(--radius);padding:16px;margin:14px 0}
   .joker h3{font-family:"Anton",sans-serif;font-weight:400;font-size:1.4rem;color:var(--gold);letter-spacing:.03em}
 
-  /* Compra */
-  .shop{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}
-  .shop .box{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:14px}
-  .shop h4{font-size:.74rem;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--leaf);margin-bottom:8px}
-  .shop label{display:flex;gap:10px;align-items:center;padding:7px 0;border-bottom:1px dashed var(--line);font-size:.9rem;cursor:pointer;min-height:40px}
-  .shop label:last-child{border-bottom:0}
-  .shop input{width:20px;height:20px;accent-color:var(--gold);flex:none}
-  .shop input:checked+span{text-decoration:line-through;color:var(--ink-dim)}
-  .shop span small{color:var(--ink-dim)}
-  .progress{font-size:.8rem;color:var(--ink-dim);margin:6px 0 10px}
-  .reset{background:none;border:0;color:var(--ink-dim);text-decoration:underline;font:inherit;font-size:.78rem;cursor:pointer;margin-left:8px}
 
   footer{text-align:center;margin-top:36px;padding:0 16px;font-size:.78rem;color:var(--ink-dim);line-height:1.6}
   @media (max-width:560px){.ev{grid-template-columns:52px 1fr;padding:9px 10px}.wod{padding:14px 12px}}
@@ -114,7 +103,6 @@
 <nav><div class="tabs">
   <a href="#horario" class="on">Horario</a>
   <a href="#estrategia">Estrategia</a>
-  <a href="#compra">Compra</a>
 </div></nav>
 
 <main>
@@ -304,13 +292,6 @@
   </article>
 </section>
 
-<!-- ===================== COMPRA ===================== -->
-<section id="compra">
-  <h2>Compra <small>Mercadona · 6 personas</small></h2>
-  <p class="progress"><span id="shopCount"></span><button class="reset" id="shopReset" type="button">desmarcar todo</button></p>
-  <p class="note">Revisar si en el alojamiento hay <b>aceite y sal</b>. Se marca solo en este móvil.</p>
-  <div class="shop" id="shop"></div>
-</section>
 
 </main>
 
@@ -320,33 +301,6 @@
 </footer>
 
 <script>
-const SHOP = {
-  "Desayuno": ["Café <small>(¿cápsulas? ¿quién lleva cafetera?)</small>", "Leche", "Plátanos <small>×18–24</small>", "Pan de tostadas", "Pan brioche <small>×2</small>", "Aguacates <small>×2 packs</small>", "Jamón serrano", "Huevos <small>×30–36</small>", "Avena", "Avena con chocolate <small>(Gorka)</small>"],
-  "Snacks": ["Dátiles", "Frutos secos", "Tortitas de legumbre", "Chocolate 85 %", "Agua <small>×3 garrafas</small>", "Isotónico o miel <small>(opcional)</small>"],
-  "Viernes · cena": ["Espaguetis <small>1 kg</small>", "Pesto", "Tomates cherry <small>×2–3</small>", "Queso ricotta"],
-  "Sábado · comida": ["Arroz <small>1 kg</small>", "Pollo desmigado <small>×3 bandejas</small>", "Atún <small>pack de 6</small>", "Maíz <small>×1 pack</small>"],
-  "Domingo · comida": ["Quinoa <small>×2 paquetes</small>", "Gambas peladas congeladas <small>×2–3</small>", "Pasta de lentejas / pasta blanca <small>(plan B)</small>", "Pisto", "Patatas baby", "Algas"]
-};
-const KEY = "yejoun-shop";
-let done = {};
-try { done = JSON.parse(localStorage.getItem(KEY)) || {}; } catch { done = {}; }
-const save = () => { try { localStorage.setItem(KEY, JSON.stringify(done)); } catch {} };
-function renderShop() {
-  const total = Object.values(SHOP).flat().length;
-  document.getElementById("shop").innerHTML = Object.entries(SHOP).map(([g, items]) => `
-    <div class="box"><h4>${g}</h4>${items.map((it, i) => {
-      const id = g + "|" + i;
-      return `<label><input type="checkbox" data-id="${id}" ${done[id] ? "checked" : ""}><span>${it}</span></label>`;
-    }).join("")}</div>`).join("");
-  document.getElementById("shopCount").textContent = `${Object.values(done).filter(Boolean).length} de ${total} en el carro`;
-}
-document.getElementById("shop").addEventListener("change", e => {
-  const id = e.target.dataset.id; if (!id) return;
-  done[id] = e.target.checked; save(); renderShop();
-});
-document.getElementById("shopReset").addEventListener("click", () => { done = {}; save(); renderShop(); });
-renderShop();
-
 // Pestaña activa según la sección visible
 const links = [...document.querySelectorAll("nav a")];
 const io = new IntersectionObserver(entries => {
