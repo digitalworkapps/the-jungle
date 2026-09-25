@@ -1,10 +1,11 @@
 /* The Jungle Throwdown 26 — service worker */
-const CACHE = "jungle26-v2";
+const CACHE = "jungle26-v3";
 const ASSETS = [
   "./",
   "./index.html",
   "./data.js",
   "./app.js",
+  "./equipo.html",
   "./manifest.webmanifest",
   "./icons/icon-192.png",
   "./icons/icon-512.png",

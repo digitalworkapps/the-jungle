@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>YEJOUN · Plan de competición</title>
+<meta name="theme-color" content="#0e1a12">
+<link rel="icon" type="image/png" sizes="192x192" href="./icons/icon-192.png">
+<link rel="apple-touch-icon" href="./icons/icon-192.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0e1a12;--bg-deep:#09120c;--card:#15251a;--card-2:#1c3022;
+    --line:rgba(255,255,255,.14);--gold:#f5c518;--gold-soft:#ffe27a;--leaf:#3ddc84;
+    --ink:#f3f1e7;--ink-dim:rgba(243,241,231,.68);--inter:#ffd400;--radius:14px;
+    --unai:#3b9be8;--yerai:#3ddc84;--ainara:#ff5fb8;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+  body{background:radial-gradient(900px 480px at 90% -8%,rgba(61,220,132,.10),transparent 60%),var(--bg);color:var(--ink);font-family:"Archivo",system-ui,sans-serif;min-height:100vh;padding-bottom:calc(40px + env(safe-area-inset-bottom))}
+  a{color:var(--gold-soft)}
+  header{text-align:center;padding:28px 16px 6px}
+  header .kicker{font-weight:800;font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:var(--leaf)}
+  header h1{font-family:"Anton",Impact,sans-serif;font-weight:400;font-size:clamp(2.6rem,12vw,4.2rem);line-height:.95;color:var(--gold);margin-top:6px;text-shadow:4px 4px 0 rgba(0,0,0,.35)}
+  header .meta{margin-top:10px;font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-dim)}
+  .team{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin-top:12px}
+  .p{display:inline-flex;align-items:center;gap:6px;font-weight:800;font-size:.8rem;padding:5px 11px;border-radius:999px;background:color-mix(in srgb,var(--c) 18%,transparent);color:var(--ink);border:1.5px solid var(--c)}
+  .p::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--c)}
+  .u{--c:var(--unai)} .y{--c:var(--yerai)} .a{--c:var(--ainara)}
+  nav{position:sticky;top:0;z-index:20;background:linear-gradient(var(--bg) 80%,transparent);padding:10px 16px 14px}
+  nav .tabs{max-width:900px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:6px;background:var(--bg-deep);padding:5px;border-radius:999px;border:1px solid var(--line)}
+  nav a{text-decoration:none;text-align:center;font-weight:800;font-size:.8rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-dim);padding:10px 4px;border-radius:999px;min-height:42px;display:flex;align-items:center;justify-content:center}
+  nav a.on{background:var(--gold);color:#111}
+  main{max-width:900px;margin:0 auto;padding:0 16px}
+  section{scroll-margin-top:80px;margin-top:10px}
+  h2{font-family:"Anton",sans-serif;font-weight:400;font-size:1.9rem;letter-spacing:.03em;color:var(--gold);text-transform:uppercase;margin:24px 0 10px}
+  h2 small{font-family:"Archivo";font-size:.72rem;letter-spacing:.12em;color:var(--ink-dim);font-weight:700;margin-left:8px}
+  .note{font-size:.82rem;color:var(--ink-dim);line-height:1.55;margin:6px 0 12px}
+  .note b{color:var(--ink)}
+
+  /* Timeline */
+  .day{font-weight:800;font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;color:var(--leaf);margin:18px 0 8px}
+  .tl{border-left:3px solid var(--line);margin-left:8px;padding-left:16px;display:flex;flex-direction:column;gap:8px}
+  .ev{position:relative;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px 12px;display:grid;grid-template-columns:62px 1fr;gap:4px 12px;align-items:start}
+  .ev::before{content:"";position:absolute;left:-23px;top:16px;width:11px;height:11px;border-radius:50%;background:var(--ink-dim);border:2px solid var(--bg)}
+  .ev .t{font-weight:800;font-size:1.02rem;font-variant-numeric:tabular-nums;color:var(--gold-soft)}
+  .ev .w{font-weight:700;font-size:.92rem;line-height:1.35}
+  .ev .w small{display:block;font-weight:500;font-size:.8rem;color:var(--ink-dim);margin-top:3px;line-height:1.45}
+  .ev.food{background:transparent;border-style:dashed}
+  .ev.food::before{background:var(--leaf)}
+  .ev.food .t{color:var(--leaf)}
+  .ev.wod{border:2px solid var(--inter);background:var(--card-2)}
+  .ev.wod::before{background:var(--inter)}
+  .ev.wod .w{font-family:"Anton",sans-serif;font-weight:400;font-size:1.2rem;letter-spacing:.03em}
+  .ev.wod .w small{font-family:"Archivo"}
+  .ev.pend{opacity:.7}
+  .chip{display:inline-block;font-size:.66rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;background:var(--inter);color:#111;padding:2px 7px;border-radius:999px;margin-right:4px;vertical-align:1px}
+
+  /* WOD cards */
+  .wod{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:16px;margin-bottom:14px}
+  .wod>h3{font-family:"Anton",sans-serif;font-weight:400;font-size:1.45rem;letter-spacing:.03em;display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+  .wod>h3 span{color:var(--gold)}
+  .wod>h3 small{font-family:"Archivo";font-size:.74rem;font-weight:700;color:var(--ink-dim);letter-spacing:.06em}
+  .key{margin:12px 0;background:var(--bg-deep);border-left:3px solid var(--gold);border-radius:0 10px 10px 0;padding:10px 12px;font-size:.88rem;line-height:1.5}
+  .key b{color:var(--gold-soft)}
+  .roles{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:8px;margin:12px 0}
+  .role{border-radius:10px;padding:10px 12px;background:color-mix(in srgb,var(--c) 12%,var(--bg-deep));border:1.5px solid color-mix(in srgb,var(--c) 55%,transparent)}
+  .role b{display:block;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--c);margin-bottom:4px}
+  .role div{font-size:.88rem;line-height:1.45}
+  .role .kg{font-family:"Anton",sans-serif;font-size:1.25rem;color:var(--ink);letter-spacing:.02em}
+  ul.tips{list-style:none;display:flex;flex-direction:column;gap:7px;margin-top:8px}
+  ul.tips li{position:relative;padding-left:18px;font-size:.9rem;line-height:1.5}
+  ul.tips li::before{content:"";position:absolute;left:2px;top:.6em;width:7px;height:7px;border-radius:2px;background:var(--gold);transform:rotate(45deg)}
+  ul.tips li.warn::before{background:#ff6b5e}
+  ul.tips b{color:var(--gold-soft)}
+  table{width:100%;border-collapse:collapse;font-size:.84rem;margin-top:10px}
+  th,td{padding:8px 6px;border-bottom:1px dashed var(--line);text-align:left;font-variant-numeric:tabular-nums}
+  thead th{font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-dim)}
+  tr.pick td{background:color-mix(in srgb,var(--inter) 16%,transparent);font-weight:800}
+  .pending{font-size:.8rem;color:#ffcf99;background:rgba(255,122,0,.12);border-radius:8px;padding:8px 10px;margin-top:10px;line-height:1.5}
+  .btn{display:inline-flex;align-items:center;gap:6px;margin-top:10px;padding:9px 14px;border-radius:10px;border:1.5px solid var(--line);background:var(--bg-deep);color:var(--ink);text-decoration:none;font-weight:800;font-size:.82rem}
+  .joker{background:linear-gradient(135deg,rgba(245,197,24,.18),rgba(61,220,132,.08));border:2px solid var(--gold);border-radius:var(--radius);padding:16px;margin:14px 0}
+  .joker h3{font-family:"Anton",sans-serif;font-weight:400;font-size:1.4rem;color:var(--gold);letter-spacing:.03em}
+
+  /* Compra */
+  .shop{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}
+  .shop .box{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:14px}
+  .shop h4{font-size:.74rem;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--leaf);margin-bottom:8px}
+  .shop label{display:flex;gap:10px;align-items:center;padding:7px 0;border-bottom:1px dashed var(--line);font-size:.9rem;cursor:pointer;min-height:40px}
+  .shop label:last-child{border-bottom:0}
+  .shop input{width:20px;height:20px;accent-color:var(--gold);flex:none}
+  .shop input:checked+span{text-decoration:line-through;color:var(--ink-dim)}
+  .shop span small{color:var(--ink-dim)}
+  .progress{font-size:.8rem;color:var(--ink-dim);margin:6px 0 10px}
+  .reset{background:none;border:0;color:var(--ink-dim);text-decoration:underline;font:inherit;font-size:.78rem;cursor:pointer;margin-left:8px}
+
+  footer{text-align:center;margin-top:36px;padding:0 16px;font-size:.78rem;color:var(--ink-dim);line-height:1.6}
+  @media (max-width:560px){.ev{grid-template-columns:52px 1fr;padding:9px 10px}.wod{padding:14px 12px}}
+  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="kicker">The Jungle Throwdown 26 · Intermedio</div>
+  <h1>YEJOUN</h1>
+  <div class="meta">CrossFit Iruña · plan de competición</div>
+  <div class="team"><span class="p u">Unai</span><span class="p y">Yerai</span><span class="p a">Ainara</span></div>
+</header>
+
+<nav><div class="tabs">
+  <a href="#horario" class="on">Horario</a>
+  <a href="#estrategia">Estrategia</a>
+  <a href="#compra">Compra</a>
+</div></nav>
+
+<main>
+
+<!-- ===================== HORARIO + COMIDAS ===================== -->
+<section id="horario">
+  <h2>Horario y comidas</h2>
+  <p class="note">Regla general: <b>comida principal 2–3 h antes</b> de cada WOD, <b>snack ligero 30–45 min antes</b> y <b>recuperar nada más acabar</b>. Nada nuevo el día de la competi: solo cosas que ya sabéis que os sientan bien. Agua a sorbos todo el día; isotónico o miel entre WODs.</p>
+
+  <div class="day">Viernes 25</div>
+  <div class="tl">
+    <div class="ev"><span class="t">Tarde</span><span class="w">Briefing general<small>Preguntar: ¿en el Choose your poison (WOD 3) se puede parar con la barra en el suelo sin soltarla?</small></span></div>
+    <div class="ev food"><span class="t">Cena</span><span class="w">Espaguetis al pesto con cherry y ricotta<small>Carga de hidratos para el sábado. Cenar pronto y dormir bien.</small></span></div>
+  </div>
+
+  <div class="day">Sábado 26</div>
+  <div class="tl">
+    <div class="ev food"><span class="t">06:15</span><span class="w">Desayuno<small>Tostadas o brioche + jamón serrano + 1–2 huevos + plátano. Café si lo tomáis siempre. Poco aguacate (la grasa hace la digestión lenta).</small></span></div>
+    <div class="ev food"><span class="t">08:05</span><span class="w">Snack<small>Medio plátano o 2 dátiles + agua.</small></span></div>
+    <div class="ev"><span class="t">08:35</span><span class="w">Calentamiento WOD 1<small>Probad singles de snatch a 60 (chicos) y 45 (Ainara) para confirmar el peso antes de decírselo al juez.</small></span></div>
+    <div class="ev"><span class="t">08:50</span><span class="w">Corrales</span></div>
+    <div class="ev wod"><span class="t">08:55</span><span class="w">WOD 1 · El Caimán<small><span class="chip">Calle 4</span><span class="chip">Heat 6</span> Hasta las 09:05</small></span></div>
+    <div class="ev food"><span class="t">09:15</span><span class="w">Recuperar<small>Plátano + tortitas de legumbre + agua o isotónico.</small></span></div>
+    <div class="ev food"><span class="t">10:30</span><span class="w">Comida ligera<small>Tostadas con jamón o un plato pequeño de arroz con pollo. Termina antes de las 10:45.</small></span></div>
+    <div class="ev food"><span class="t">12:05</span><span class="w">Snack<small>2–3 dátiles o medio plátano. Una cucharada de miel si vais bajos.</small></span></div>
+    <div class="ev"><span class="t">12:35</span><span class="w">Calentamiento WOD 2</span></div>
+    <div class="ev"><span class="t">12:50</span><span class="w">Corrales</span></div>
+    <div class="ev wod"><span class="t">12:55</span><span class="w">WOD 2 · El Ajolote<small><span class="chip">Calle 4</span><span class="chip">Heat 6</span> Hasta las 13:06</small></span></div>
+    <div class="ev food"><span class="t">13:30</span><span class="w">Comida principal<small>Arroz con pollo, atún, maíz y huevo. Ración normal, sin pasarse: quedan 4 h para el WOD 3.</small></span></div>
+    <div class="ev food"><span class="t">16:30</span><span class="w">Merienda<small>Plátano + tortitas de legumbre o un puñado de frutos secos. 1–2 onzas de chocolate 85 % si os apetece.</small></span></div>
+    <div class="ev"><span class="t">17:20</span><span class="w">Calentamiento WOD 3<small>Incluid 2–3 subidas legless y un par de DT ligeros.</small></span></div>
+    <div class="ev wod"><span class="t">17:35</span><span class="w">WOD 3 · La Sanguijuela (1ª parte)<small><span class="chip">Calle 8</span><span class="chip">Heat 11</span> Corrales 17:35 · hasta las 17:44</small></span></div>
+    <div class="ev pend"><span class="t">¿?</span><span class="w">WOD 3 · 2ª parte (Choose your poison)<small>Horario pendiente de confirmar.</small></span></div>
+    <div class="ev food"><span class="t">Noche</span><span class="w">Cena fuera<small>Hidratos + proteína para el domingo (pasta, arroz, pizza normal…). Poco alcohol.</small></span></div>
+  </div>
+
+  <div class="day">Domingo 27</div>
+  <div class="tl">
+    <div class="ev food"><span class="t">−2:30 h</span><span class="w">Desayuno<small>Avena (la de chocolate para Gorka) o tostadas + plátano + huevos. 2–3 h antes del primer WOD.</small></span></div>
+    <div class="ev pend wod"><span class="t">¿?</span><span class="w">WOD 4 · La Tarántula<small>Horario pendiente.</small></span></div>
+    <div class="ev food"><span class="t">Entre</span><span class="w">Snack entre WODs<small>Plátano, dátiles, isotónico.</small></span></div>
+    <div class="ev pend wod"><span class="t">¿?</span><span class="w">WOD 5 · Buey solo bien se lame<small>Horario pendiente.</small></span></div>
+    <div class="ev food"><span class="t">Después</span><span class="w">Comida<small>Quinoa con gambas o pasta. Por la noche, barbacoa.</small></span></div>
+  </div>
+</section>
+
+<!-- ===================== ESTRATEGIA ===================== -->
+<section id="estrategia">
+  <h2>Estrategia <small>por WOD</small></h2>
+
+  <div class="joker">
+    <h3>🃏 Jungle Joker → WOD 3A (rope climb)</h3>
+    <p class="note" style="margin-bottom:0">Suma un <b>50 %</b> de los puntos del WOD. Los tres hacéis legless, algo que pocos equipos de Intermedio tendrán: es donde más probable es quedar arriba. <b>Plan B:</b> WOD 4 (Unai y Yerai con BMU). Se entrega al juez antes de empezar; si el WOD 1 o el 2 sale muy bien, se puede replantear.</p>
+  </div>
+
+  <!-- WOD 1 -->
+  <article class="wod">
+    <h3><span>1</span> El Caimán <small>AMRAP 9'</small></h3>
+    <div class="key">Lo que más puntúa es el <b>peso de las barras</b>: cada ronda son 5 snatches con las dos barras. Una ronda de worm + burpees solo son 28 kg. <b>Fallar un snatch cuesta más que 5 kg menos en la barra.</b></div>
+    <div class="roles">
+      <div class="role u" style="--c:var(--unai)"><b>Unai + Yerai</b><div>Barra de chico, relevándoos cada ronda o cada 2–3 reps.</div><div class="kg">60 kg</div></div>
+      <div class="role a" style="--c:var(--ainara)"><b>Ainara</b><div>Hace todos los snatches de la barra de chica (≈20).</div><div class="kg">45 kg</div></div>
+    </div>
+    <table>
+      <thead><tr><th>Barras ♂ / ♀</th><th>Por ronda</th><th>4 rondas</th></tr></thead>
+      <tbody>
+        <tr><td>55 / 40</td><td>503 kg</td><td>2.012 kg</td></tr>
+        <tr><td>55 / 45</td><td>528 kg</td><td>2.112 kg</td></tr>
+        <tr class="pick"><td>60 / 45</td><td>553 kg</td><td>2.212 kg</td></tr>
+        <tr><td>60 / 50</td><td>578 kg</td><td>2.312 kg</td></tr>
+      </tbody>
+    </table>
+    <ul class="tips">
+      <li><b>60 kg chicos</b>: como os relevais, cada uno hace ~10 snatches con descanso. Si en el calentamiento 60 no sale fluido, bajad a 55.</li>
+      <li><b>45 kg Ainara</b>: aunque pueda con 50, hace ~20 snatches sola y va más justa de fondo. 50 kg solo si en el calentamiento vuela.</li>
+      <li>Worm y burpees a ritmo constante: sirven para llegar a los snatches, no para ganar el WOD.</li>
+      <li class="warn">El peso se dice al juez <b>antes de montar</b> y ya no se cambia.</li>
+    </ul>
+    <p class="note" style="margin-top:8px">Supone que cada snatch sincronizado suma las dos barras. <a href="./#inter/1">Calculadora del WOD 1 →</a></p>
+  </article>
+
+  <!-- WOD 2 -->
+  <article class="wod">
+    <h3><span>2</span> El Ajolote <small>For time · cap 11'</small></h3>
+    <div class="roles">
+      <div class="role" style="--c:var(--yerai)"><b>Yerai</b><div>Barra</div><div class="kg">50 kg</div></div>
+      <div class="role" style="--c:var(--unai)"><b>Unai</b><div>Mancuernas</div><div class="kg">2 × 22,5 kg</div></div>
+      <div class="role" style="--c:var(--ainara)"><b>Ainara</b><div>Kettlebells</div><div class="kg">2 × 16 kg</div></div>
+    </div>
+    <ul class="tips">
+      <li>Cada uno <b>mantiene su elemento</b> en front squat, S2OH, lungesters y bear complex.</li>
+      <li><b>T2B (40) y HSPU (30) de dos en dos</b>: el grueso lo hacen <b>Unai + Yerai</b>. Ainara entra en tandas cortas para dar aire, y guarda fondo.</li>
+      <li><b>Wall climb ping pong (20)</b>: orden fijo <b>Unai → Yerai → Ainara</b>. Cada uno sube 1 de cada 3.</li>
+      <li><b>Final</b> (sprint + 5 burpees cada uno): sale primero <b>Ainara</b>, luego Yerai y cierra Unai.</li>
+    </ul>
+  </article>
+
+  <!-- WOD 3 -->
+  <article class="wod">
+    <h3><span>3</span> La Sanguijuela <small>2' work · 15" rest</small></h3>
+    <div class="roles">
+      <div class="role" style="--c:var(--yerai)"><b>Yerai</b><div>DT con barra de chico</div><div class="kg">50 → 60 → 70 → 80</div></div>
+      <div class="role" style="--c:var(--ainara)"><b>Ainara</b><div>DT con barra de chica</div><div class="kg">35 → 40 → 45 → 50</div></div>
+      <div class="role" style="--c:var(--unai)"><b>Unai</b><div>DT con mancuernas</div><div class="kg">2×20 → 2×27,5</div></div>
+    </div>
+    <ul class="tips">
+      <li><b>Rope climb: siempre synchro legless = 4 puntos</b>. Por subida vale lo mismo que el legless individual, pero usáis las dos cuerdas a la vez: el doble de puntos por minuto.</li>
+      <li>Parejas rotando: <b>Unai + Yerai → Unai + Ainara → Yerai + Ainara</b>. El que descansa, a la tiza y a mirar.</li>
+      <li>Synchro válido = <b>tocar arriba a la vez</b>. El primero espera arriba sin pinzar. Bajad pinzando.</li>
+      <li>Si no acabáis el DT, seguid sumando reps (desempate). Con la bocina, a la siguiente estación.</li>
+    </ul>
+    <div class="key" style="margin-top:12px"><b>Ronda 6 · Choose your poison</b>: 7 → 5 → 3 clean &amp; jerk unbroken. Los kilos de Ainara ×1,4 y quien no complete cuenta 0.
+      <br>Propuesta: <b>Ainara 7</b> (su ×1,4 rinde más con más reps), <b>Unai 5</b> (peso medio, lo suyo) y <b>Yerai 3</b> (el más técnico, el más pesado). Barra de chico: cargad primero el peso de Unai y <b>añadid discos</b> para Yerai.</div>
+    <div class="pending">Pendiente: pesos concretos. Pasad vuestros máximos de clean &amp; jerk y lo que hacéis unbroken en 3, 5 y 7, y confirmad en el briefing si se puede parar con la barra en el suelo sin soltarla.</div>
+    <a class="btn" href="./#inter/3">Calculadora del 3A / 3B →</a>
+  </article>
+
+  <!-- WOD 4 -->
+  <article class="wod">
+    <h3><span>4</span> La Tarántula <small>3 × 3:15 · 15" rest</small></h3>
+    <div class="roles">
+      <div class="role" style="--c:var(--ainara)"><b>A · Ainara</b><div>R1: 4 DP + 21 thrusters</div><div class="kg">30 kg</div></div>
+      <div class="role" style="--c:var(--unai)"><b>B · Unai</b><div>R2: 4 DP + 15 thrusters</div><div class="kg">50 kg</div></div>
+      <div class="role" style="--c:var(--yerai)"><b>C · Yerai</b><div>R3: 4 DP + 9 thrusters</div><div class="kg">60 kg</div></div>
+    </div>
+    <table>
+      <thead><tr><th>Ronda</th><th>Buy-in</th><th>Gimnásticos</th><th>Carga barra</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td>Ainara</td><td>Ainara + Unai<br><small>C2B = 4 pts</small></td><td>Yerai → 50 kg y se une</td></tr>
+        <tr><td>2</td><td>Unai</td><td>Unai + Yerai<br><small>BMU = 6 pts</small></td><td>Ainara → 60 kg y se une</td></tr>
+        <tr><td>3</td><td>Yerai</td><td>Unai + Yerai<br><small>RMU+BMU = 8 · BMU = 4</small></td><td>—</td></tr>
+      </tbody>
+    </table>
+    <ul class="tips">
+      <li>Ainara hace el thruster más ligero y en la ronda 2 carga la barra: <b>esquiva la ronda de BMU</b>.</li>
+      <li>Unai con 15 thrusters a 50: pesos medios repetidos, lo que mejor lleva. Yerai con 9 a 60: pocas reps y técnica.</li>
+      <li>R3: <b>RMU + BMU (8)</b> mientras salgan; cuando no, BMU (4). Ainara entra de relevo cuando uno de los dos pare. Un C2B solo vale 1.</li>
+      <li>Series cortas y sin fallar: un rep fallado en sincro es tiempo tirado.</li>
+    </ul>
+    <a class="btn" href="./#inter/4">Planificador y puntos →</a>
+  </article>
+
+  <!-- WOD 5 -->
+  <article class="wod">
+    <h3><span>5</span> Buey solo bien se lame <small>For time · cap 13'</small></h3>
+    <div class="key">Todo unbroken o eliminado (menos la comba). <b>El peligro es la serie de 10.</b> Dos siempre aguantan el worm; transiciones rápidas.</div>
+    <div class="roles">
+      <div class="role" style="--c:var(--unai)"><b>Unai</b><div>Box step over (2×22,5) + fondos con traverse</div></div>
+      <div class="role" style="--c:var(--yerai)"><b>Yerai</b><div>American KB swing</div><div class="kg">32 kg</div></div>
+      <div class="role" style="--c:var(--ainara)"><b>Ainara</b><div>20 DU + OHS</div><div class="kg">35 kg</div></div>
+    </div>
+    <ul class="tips">
+      <li>Cada ronda: <b>Ainara</b> DU → <b>Unai</b> box step over → <b>Yerai</b> KB swing → <b>Ainara</b> OHS → <b>Unai</b> paralelas. Cada relevo, el que sale coge el hueco en el worm.</li>
+      <li>Si alguien llega tocado a una serie, <b>que la haga otro</b>. Más vale un relevo de más que un eliminado.</li>
+      <li>Plan B si eliminan a Unai: fondos → Yerai; box → Ainara (sus mancuernas son 2×15).</li>
+      <li>Si os pilla el cap: cuentan las reps hechas (sin comba ni buy-in).</li>
+    </ul>
+  </article>
+</section>
+
+<!-- ===================== COMPRA ===================== -->
+<section id="compra">
+  <h2>Compra <small>Mercadona · 6 personas</small></h2>
+  <p class="progress"><span id="shopCount"></span><button class="reset" id="shopReset" type="button">desmarcar todo</button></p>
+  <p class="note">Revisar si en el alojamiento hay <b>aceite y sal</b>. Se marca solo en este móvil.</p>
+  <div class="shop" id="shop"></div>
+</section>
+
+</main>
+
+<footer>
+  Plan interno del equipo · no enlazado desde la app pública<br>
+  <a href="./">← App de WODs</a>
+</footer>
+
+<script>
+const SHOP = {
+  "Desayuno": ["Café <small>(¿cápsulas? ¿quién lleva cafetera?)</small>", "Leche", "Plátanos <small>×18–24</small>", "Pan de tostadas", "Pan brioche <small>×2</small>", "Aguacates <small>×2 packs</small>", "Jamón serrano", "Huevos <small>×30–36</small>", "Avena", "Avena con chocolate <small>(Gorka)</small>"],
+  "Snacks": ["Dátiles", "Frutos secos", "Tortitas de legumbre", "Chocolate 85 %", "Agua <small>×3 garrafas</small>", "Isotónico o miel <small>(opcional)</small>"],
+  "Viernes · cena": ["Espaguetis <small>1 kg</small>", "Pesto", "Tomates cherry <small>×2–3</small>", "Queso ricotta"],
+  "Sábado · comida": ["Arroz <small>1 kg</small>", "Pollo desmigado <small>×3 bandejas</small>", "Atún <small>pack de 6</small>", "Maíz <small>×1 pack</small>"],
+  "Domingo · comida": ["Quinoa <small>×2 paquetes</small>", "Gambas peladas congeladas <small>×2–3</small>", "Pasta de lentejas / pasta blanca <small>(plan B)</small>", "Pisto", "Patatas baby", "Algas"]
+};
+const KEY = "yejoun-shop";
+let done = {};
+try { done = JSON.parse(localStorage.getItem(KEY)) || {}; } catch { done = {}; }
+const save = () => { try { localStorage.setItem(KEY, JSON.stringify(done)); } catch {} };
+function renderShop() {
+  const total = Object.values(SHOP).flat().length;
+  document.getElementById("shop").innerHTML = Object.entries(SHOP).map(([g, items]) => `
+    <div class="box"><h4>${g}</h4>${items.map((it, i) => {
+      const id = g + "|" + i;
+      return `<label><input type="checkbox" data-id="${id}" ${done[id] ? "checked" : ""}><span>${it}</span></label>`;
+    }).join("")}</div>`).join("");
+  document.getElementById("shopCount").textContent = `${Object.values(done).filter(Boolean).length} de ${total} en el carro`;
+}
+document.getElementById("shop").addEventListener("change", e => {
+  const id = e.target.dataset.id; if (!id) return;
+  done[id] = e.target.checked; save(); renderShop();
+});
+document.getElementById("shopReset").addEventListener("click", () => { done = {}; save(); renderShop(); });
+renderShop();
+
+// Pestaña activa según la sección visible
+const links = [...document.querySelectorAll("nav a")];
+const io = new IntersectionObserver(entries => {
+  entries.forEach(en => {
+    if (en.isIntersecting) links.forEach(a => a.classList.toggle("on", a.getAttribute("href") === "#" + en.target.id));
+  });
+}, { rootMargin: "-40% 0px -55% 0px" });
+document.querySelectorAll("section").forEach(s => io.observe(s));
+</script>
+</body>
+</html>
